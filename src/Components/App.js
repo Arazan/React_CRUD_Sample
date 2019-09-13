@@ -22,17 +22,29 @@ class App extends React.Component{
     )
   }
 
-
+  handleCategorySelected = category => {
+    this.setState({
+      category
+    })
+  }
 
   render(){ 
-    const exercises = this.getExercisesByMuscles();
+    const exercises = this.getExercisesByMuscles(),
+    {category} = this.state
     return (
       <Fragment>
         <Header/>
 
-        <Excercises exercises={exercises} />
+        <Excercises 
+        category = {category}
+        exercises={exercises} />
 
-        <Footer muscles={muscles}/>
+        <Footer 
+        category = {category}
+        muscles={muscles}
+        onSelect={this.handleCategorySelected}
+        />
+        
       </Fragment>
     );    
   }
